@@ -17,6 +17,12 @@
                     <i class="material-icons-two-tone">person</i>Users
                 </a>
             </li>
+            <li class="@if(Route::is('hero.*')) active-page @endif">
+                <a href="{{route('hero.index')}}"
+                   class="@if(Route::is('hero.index')) active @endif">
+                    <i class="material-icons-two-tone">summarize</i>Heros
+                </a>
+            </li>
         </ul>
     </div>
 </div>

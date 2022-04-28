@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
-
     private $userImagePath;
 
     public function __construct()
@@ -112,7 +111,7 @@ class UserController extends Controller
 
         return response()->json([
             'status' => true,
-            'data' => $user,
+            'data' => '',
             'message' => 'User deleted successfully'
         ]);
     }

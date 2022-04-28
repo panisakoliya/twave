@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,16 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         Route::group(['prefix' => '{user}'], function () {
             Route::get('edit', [UserController::class, 'edit'])->name('edit');
             Route::post('update', [UserController::class, 'update'])->name('update');
+        });
+    });
+    Route::group(['prefix' => 'hero', 'as' => 'hero.'], function () {
+        Route::get('/', [HeroController::class, 'index'])->name('index');
+        Route::get('create', [HeroController::class, 'create'])->name('create');
+        Route::post('store', [HeroController::class, 'store'])->name('store');
+        Route::post('delete', [HeroController::class, 'delete'])->name('delete');
+        Route::group(['prefix' => '{hero}'], function () {
+            Route::get('edit', [HeroController::class, 'edit'])->name('edit');
+            Route::post('update', [HeroController::class, 'update'])->name('update');
         });
     });
 });
