@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\ModelTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Webpatser\Uuid\Uuid;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, ModelTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -49,7 +52,7 @@ class User extends Authenticatable
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
+            $model->uuid = (string)Uuid::generate(4);
         });
     }
 
@@ -61,5 +64,12 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'uuid';
+    }
+
+    public function getActionButtonsAttribute()
+    {
+        return '<ul class="table-controls m-0 p-0">' .
+            $this->getDeleteButtonAttribute('user.delete') .
+            '</ul>';
     }
 }

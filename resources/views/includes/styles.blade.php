@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="{{asset('assets/css/fonts-poppins.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/fonts-montserrat.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/fonts-material-icons.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/perfect-scrollbar.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/pace.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/datatables.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/buttons.dataTables.1.4.1.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/flatpickr.min.css')}}">

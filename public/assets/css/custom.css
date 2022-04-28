@@ -1,0 +1,27 @@
+/* Your Custom CSS Goes here */
+ol .breadcrumb {
+    margin-bottom: 0rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-decorate-none {
+    text-decoration: none;
+}
+
+.table-common-th {
+    border: 1px solid;
+    font-weight: bold !important;
+    color: #000 !important;
+}
+
+.table-common-td {
+    border: 1px solid;
+}
+
+.anchor{
+    color: #fff !important;
+    text-decoration: none;
+}

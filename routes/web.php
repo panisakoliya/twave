@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes(['register' => false]);
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
-Auth::routes();
+Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**** Admin panel routes ****/
+
+Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::post('delete', [UserController::class, 'delete'])->name('delete');
+    Route::post('updateStatus', [UserController::class, 'updateStatus'])->name('update.status');
+});
