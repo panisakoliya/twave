@@ -27,13 +27,14 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card widget">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="card-body">
-                            <div class="table-responsive mb-4 mt-4 overflow-hidden">
-                                {!! $dataTable->table() !!}
-                            </div>
-                        </div>
+                <div class="card-header">
+                    <h5 class="card-title">
+                        <a href="{{route('category.create')}}" class="btn btn-primary float-end">Add Category</a>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive mb-4 mt-4 overflow-hidden">
+                        {!! $dataTable->table() !!}
                     </div>
                 </div>
             </div>
@@ -93,7 +94,7 @@
                                     title: response.message
                                 });
                             }
-                            $('#users-table').DataTable().draw();
+                            $('#categories-table').DataTable().draw();
                         }
                     });
                 }

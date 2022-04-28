@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -41,6 +42,18 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
             Route::post('update', [UserController::class, 'update'])->name('update');
         });
     });
+
+    Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('create', [CategoryController::class, 'create'])->name('create');
+        Route::post('store', [CategoryController::class, 'store'])->name('store');
+        Route::post('delete', [CategoryController::class, 'delete'])->name('delete');
+        Route::group(['prefix' => '{category}'], function () {
+            Route::get('edit', [CategoryController::class, 'edit'])->name('edit');
+            Route::post('update', [CategoryController::class, 'update'])->name('update');
+        });
+    });
+
     Route::group(['prefix' => 'hero', 'as' => 'hero.'], function () {
         Route::get('/', [HeroController::class, 'index'])->name('index');
         Route::get('create', [HeroController::class, 'create'])->name('create');

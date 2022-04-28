@@ -36,12 +36,12 @@ class HeroController extends Controller
             'image' => 'required|file',
         ]);
 
-        $hero = new Hero;
         $image = $request->file('image');
         $imageName = date('Y_m_d_h_i_s') . '__' . rand(100, 50000) . '.' . $image->getClientOriginalExtension();
         $request->image->move($this->heroImagePath, $imageName);
-        $hero->image = $imageName;
-        $hero->save();
+
+        Hero::create(['image' => $imageName]);
+
         return redirect()->route('hero.index')->with(['success' => 'Hero stored successfully']);
     }
 
@@ -64,7 +64,7 @@ class HeroController extends Controller
         }
         $hero->save();
 
-        return redirect()->route('hero.index')->with(['success' => 'User updated successfully']);
+        return redirect()->route('hero.index')->with(['success' => 'Hero updated successfully']);
     }
 
     public function delete(Request $request)

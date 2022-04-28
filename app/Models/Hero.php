@@ -11,6 +11,8 @@ class Hero extends Model
 {
     use HasFactory, ModelTrait;
 
+    protected $fillable = ['image'];
+
     /**
      * The attributes that should be cast.
      *
