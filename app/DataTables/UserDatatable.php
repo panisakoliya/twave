@@ -21,8 +21,8 @@ class UserDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('image', function ($query) {
-                return '<img class="small-img" src="' . $query->image_path . "alt=''>";
+            ->addColumn('image', function ($query) {
+                return "<img class='small-img' src='" . $query->image_path . "' alt=''>";
             })->addcolumn('action', function ($query) {
                 return $query->action_buttons;
             })->rawColumns(['image', 'action']);
