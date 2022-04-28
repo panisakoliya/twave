@@ -17,6 +17,12 @@
                     <i class="material-icons-two-tone">person</i>Users
                 </a>
             </li>
+            <li class="@if(Route::is('product.*')) active-page @endif">
+                <a href="{{route('product.index')}}"
+                   class="@if(Route::is('product.index')) active @endif">
+                    <i class="material-icons-two-tone">extension</i>Products
+                </a>
+            </li>
         </ul>
     </div>
 </div>
