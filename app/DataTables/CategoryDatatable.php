@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\Category;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UserDatatable extends DataTable
+class CategoryDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -31,12 +31,12 @@ class UserDatatable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\User $model
+     * @param \App\Models\Category $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(Category $model)
     {
-        return $model->newQuery()->role('user');
+        return $model->newQuery();
     }
 
     /**
@@ -47,7 +47,7 @@ class UserDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('users-table')
+            ->setTableId('categories-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('<"row"<"col-md-12"<"row"<"col-md-2"l><"col-md-4"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >')
@@ -72,10 +72,7 @@ class UserDatatable extends DataTable
         return [
             'id',
             'name',
-            'email',
-            'address',
             'image',
-            'phone_number',
             'action' => [
                 'data' => 'action',
                 'name' => 'action',
@@ -95,6 +92,6 @@ class UserDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Users_' . date('YmdHis');
+        return 'Categories_' . date('YmdHis');
     }
 }

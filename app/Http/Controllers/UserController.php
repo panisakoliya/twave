@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
-
     private $userImagePath;
 
     public function __construct()
@@ -66,6 +65,36 @@ class UserController extends Controller
         return view('user.edit', compact('user'));
     }
 
+    public function update(User $user, Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255|unique:users,email,' . $user->id,
+            'password' => $request->has('password') && $request->password != "" ? 'required|string|max:10,min:6' : '',
+            'address' => 'required|string|max:255',
+            'image' => $request->has('image') && $request->image != "" ? 'required|file' : '',
+            'phone_number' => 'required|string|max:255',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->has('password') && $request->password != "") {
+            $user->password = $request->password;
+        }
+        $user->address = $request->address;
+        $user->phone_number = $request->phone_number;
+
+        if ($request->has('image') && $request->image != "") {
+            $image = $request->file('image');
+            $imageName = date('Y_m_d_h_i_s') . '__' . rand(100, 50000) . '.' . $image->getClientOriginalExtension();
+            $request->image->move($this->userImagePath, $imageName);
+            $user->image = $imageName;
+        }
+        $user->save();
+
+        return redirect()->route('user.index')->with(['success' => 'User updated successfully']);
+    }
+
     public function delete(Request $request)
     {
         $user = User::where('uuid', $request->uuid)->first();
@@ -82,7 +111,7 @@ class UserController extends Controller
 
         return response()->json([
             'status' => true,
-            'data' => $user,
+            'data' => '',
             'message' => 'User deleted successfully'
         ]);
     }

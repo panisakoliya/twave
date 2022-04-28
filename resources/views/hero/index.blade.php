@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title') Categories @endsection
+@section('title') Heros @endsection
 @section('content')
     <div class="row">
         <div class="col">
             <div class="page-description">
-                <h1>Categories</h1>
+                <h1>Heros</h1>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
             <div class="card widget">
                 <div class="card-header">
                     <h5 class="card-title">
-                        <a href="{{route('category.create')}}" class="btn btn-primary float-end">Add Category</a>
+                        <a href="{{route('hero.create')}}" class="btn btn-primary float-end">Add Hero</a>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -94,7 +94,7 @@
                                     title: response.message
                                 });
                             }
-                            $('#categories-table').DataTable().draw();
+                            $('#heros-table').DataTable().draw();
                         }
                     });
                 }

@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, ModelTrait;
+
+    protected $fillable = ['image', 'name'];
 
     /**
      *  Setup model event hooks
@@ -29,5 +32,18 @@ class Category extends Model
     public function getRouteKeyName()
     {
         return 'uuid';
+    }
+
+    public function getActionButtonsAttribute()
+    {
+        return '<ul class="table-controls m-0 p-0">' .
+            $this->getEditButtonAttribute('category.edit') .
+            $this->getDeleteButtonAttribute('category.delete') .
+            '</ul>';
+    }
+
+    public function getImagePathAttribute()
+    {
+        return asset('assets/images/category_images') . '/' . $this->image;
     }
 }
