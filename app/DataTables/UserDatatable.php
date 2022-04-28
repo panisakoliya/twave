@@ -21,12 +21,11 @@ class UserDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('status', function ($query) {
-                $status = $query->status == 'active' ? "<button class='btn btn-success'>Active</button>" : "<button class='btn btn-danger'>InActive</button>";
-                return $status . "<span class='material-icons' style='margin:0 0 0 10px; cursor:pointer;' title='Change status' onclick='changeUserStatus(`" . $query->uuid . "`)'>autorenew</span>";
+            ->editColumn('image', function ($query) {
+                return '<img class="small-img" src="' . $query->image_path . "alt=''>";
             })->addcolumn('action', function ($query) {
                 return $query->action_buttons;
-            })->rawColumns(['status', 'action']);
+            })->rawColumns(['image', 'action']);
     }
 
     /**
@@ -74,7 +73,9 @@ class UserDatatable extends DataTable
             'id',
             'name',
             'email',
-            'status',
+            'address',
+            'image',
+            'phone_number',
             'action' => [
                 'data' => 'action',
                 'name' => 'action',

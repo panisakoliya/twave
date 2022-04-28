@@ -21,7 +21,12 @@ ol .breadcrumb {
     border: 1px solid;
 }
 
-.anchor{
+.anchor {
     color: #fff !important;
     text-decoration: none;
+}
+
+.small-img {
+    width: 100px;
+    height: 100px;
 }

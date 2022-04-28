@@ -24,6 +24,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'address',
+        'image',
+        'phone_number',
     ];
 
     /**
@@ -69,7 +72,13 @@ class User extends Authenticatable
     public function getActionButtonsAttribute()
     {
         return '<ul class="table-controls m-0 p-0">' .
+            $this->getEditButtonAttribute('user.edit') .
             $this->getDeleteButtonAttribute('user.delete') .
             '</ul>';
+    }
+
+    public function getImagePathAttribute()
+    {
+        return asset('assets/images/user_images') . '/' . $this->image;
     }
 }

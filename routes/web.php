@@ -26,14 +26,18 @@ Route::get('home', function () {
     return redirect()->route('dashboard');
 });
 
-
 Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
     /**** Admin panel routes ****/
     Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('create', [UserController::class, 'create'])->name('create');
+        Route::post('store', [UserController::class, 'store'])->name('store');
         Route::post('delete', [UserController::class, 'delete'])->name('delete');
-        Route::post('updateStatus', [UserController::class, 'updateStatus'])->name('update.status');
+        Route::group(['prefix' => '{user}'], function () {
+            Route::get('edit', [UserController::class, 'edit'])->name('edit');
+            Route::post('update', [UserController::class, 'update'])->name('update');
+        });
     });
 });

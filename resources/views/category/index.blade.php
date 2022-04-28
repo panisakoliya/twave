@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title') Users @endsection
+@section('title') Categories @endsection
 @section('content')
     <div class="row">
         <div class="col">
             <div class="page-description">
-                <h1>Users</h1>
+                <h1>Categories</h1>
             </div>
         </div>
     </div>
@@ -27,14 +27,13 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card widget">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        <a href="{{route('user.create')}}" class="btn btn-primary float-end">Add User</a>
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive mb-4 mt-4 overflow-hidden">
-                        {!! $dataTable->table() !!}
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card-body">
+                            <div class="table-responsive mb-4 mt-4 overflow-hidden">
+                                {!! $dataTable->table() !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
