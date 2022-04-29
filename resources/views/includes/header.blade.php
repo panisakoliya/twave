@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu dropdown-menu-end language-dropdown"
                             aria-labelledby="languageDropDown">
                             <li>
-                                <a class="dropdown-item" href="#">Profile</a>
+                                {{--<a class="dropdown-item" href="#">Profile</a>--}}
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
