@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         });
     });
 
-    Route::group(['prefix' => 'products', 'as' => 'product.'], function () {
+    Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('create', [ProductController::class, 'create'])->name('create');
         Route::post('store', [ProductController::class, 'store'])->name('store');

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\UserDatatable;
+use App\Models\Category;
+use App\Models\Hero;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,6 +29,10 @@ class HomeController extends Controller
     public function dashboard()
     {
         $users = User::role('user')->get();
-        return view('dashboard', compact('users'));
+        $categories = Category::all();
+        $products = Product::all();
+        $heros = Hero::all();
+
+        return view('dashboard', compact('users', 'categories', 'products', 'heros'));
     }
 }
