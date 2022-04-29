@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ Route::get('home', function () {
     return redirect()->route('dashboard');
 });
 
-Route::group(['middleware' => ['auth', 'isAdmin']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
     /**** Admin panel routes ****/
@@ -41,6 +42,17 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         Route::group(['prefix' => '{user}'], function () {
             Route::get('edit', [UserController::class, 'edit'])->name('edit');
             Route::post('update', [UserController::class, 'update'])->name('update');
+        });
+    });
+
+    Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('create', [OrderController::class, 'create'])->name('create');
+        Route::post('store', [OrderController::class, 'store'])->name('store');
+        Route::post('delete', [OrderController::class, 'delete'])->name('delete');
+        Route::group(['prefix' => '{order}'], function () {
+            Route::get('edit', [OrderController::class, 'edit'])->name('edit');
+            Route::post('update', [OrderController::class, 'update'])->name('update');
         });
     });
 
