@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
             Route::post('update', [UserController::class, 'update'])->name('update');
         });
     });
+
 
     Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
