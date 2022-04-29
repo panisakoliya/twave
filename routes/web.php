@@ -45,16 +45,6 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 
-    Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
-        Route::get('/', [OrderController::class, 'index'])->name('index');
-        Route::get('create', [OrderController::class, 'create'])->name('create');
-        Route::post('store', [OrderController::class, 'store'])->name('store');
-        Route::post('delete', [OrderController::class, 'delete'])->name('delete');
-        Route::group(['prefix' => '{order}'], function () {
-            Route::get('edit', [OrderController::class, 'edit'])->name('edit');
-            Route::post('update', [OrderController::class, 'update'])->name('update');
-        });
-    });
 
     Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');

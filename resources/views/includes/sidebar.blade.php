@@ -1,5 +1,4 @@
-@if(Auth::user()->hasRole('admin'))
-    <div class="app-sidebar">
+ <div class="app-sidebar">
         <div class="logo">
             <a href="{{route('dashboard')}}" class="logo-icon"><span
                         class="logo-text" style="visibility: visible;opacity: 1;">{{config('app.name')}}</span></a>
@@ -40,28 +39,4 @@
         </div>
     </div>
 
-@elseif(Auth::user()->hasRole('user'))
-    <div class="app-sidebar">
-        <div class="logo">
-            <a href="{{route('dashboard')}}" class="logo-icon"><span
-                        class="logo-text" style="visibility: visible;opacity: 1;">{{config('app.name')}}</span></a>
-            <div class="sidebar-user-switcher user-activity-online">
-            </div>
-        </div>
 
-        <div class="app-menu">
-            <ul class="accordion-menu">
-                <li class="@if(Route::is('dashboard'))active-page @endif">
-                    <a href="{{route('dashboard')}}" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
-                </li>
-                <li class="@if(Route::is('order.*')) active-page @endif">
-                    <a href="{{route('order.index')}}"
-                       class="@if(Route::is('order.index')) active @endif">
-                        <i class="material-icons-two-tone">person</i>Orders
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-@endif
