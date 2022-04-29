@@ -9,7 +9,9 @@ use Webpatser\Uuid\Uuid;
 
 class Product extends Model
 {
-    use HasFactory,ModelTrait;
+    use HasFactory, ModelTrait;
+
+    protected $fillable = ['name', 'category_id', 'price', 'description', 'image'];
 
     public static function boot()
     {
@@ -30,6 +32,11 @@ class Product extends Model
             $this->getEditButtonAttribute('product.edit') .
             $this->getDeleteButtonAttribute('product.delete') .
             '</ul>';
+    }
+
+    public function getImagePathAttribute()
+    {
+        return asset('assets/images/product_images') . '/' . $this->image;
     }
 }
 

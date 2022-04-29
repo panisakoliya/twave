@@ -55,7 +55,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => $request->has('hero') && $request->hero != "" ? 'required|file' : '',
+            'image' => $request->has('image') && $request->image != "" ? 'required|file' : '',
         ]);
 
         $category->name = $request->name;

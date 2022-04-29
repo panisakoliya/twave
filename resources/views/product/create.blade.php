@@ -45,12 +45,14 @@
 
                             <div class="col-md-3 mt-3">
                                 <div class="form-group">
-                                    <label for="email">Category</label>
-                                    <select class="form-control @error('category') is-invalid @enderror" name="category">
+                                    <label for="category">Category</label>
+                                    <select id="category" class="form-control @error('category') is-invalid @enderror"
+                                            name="category">
+                                        <option value="" disabled selected>Select category</option>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-
+                                            <option @if(old('category') == $category->id) selected
+                                                    @endif value="{{$category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                     @error('category')
                                     <div class="text-danger">{{$message}}</div>
@@ -60,8 +62,9 @@
 
                             <div class="col-md-3 mt-3">
                                 <div class="form-group">
-                                    <label for="password">Description</label>
-                                   <textarea class="form-control @error('description') is-invalid @enderror" name="description"></textarea>
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control @error('description') is-invalid @enderror"
+                                              id="description" name="description"></textarea>
                                     @error('description')
                                     <div class="text-danger">{{$message}}</div>
                                     @enderror
@@ -70,9 +73,10 @@
 
                             <div class="col-md-3 mt-3">
                                 <div class="form-group">
-                                    <label for="address">Price</label>
+                                    <label for="price">Price</label>
                                     <input type="number" id="price"
-                                           value="{{old('price')}}"  name="price" class="form-control @error('price') is-invalid @enderror">
+                                           value="{{old('price')}}" name="price"
+                                           class="form-control @error('price') is-invalid @enderror">
                                     @error('price')
                                     <div class="text-danger">{{$message}}</div>
                                     @enderror
@@ -89,7 +93,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row mt-5">

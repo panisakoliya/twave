@@ -45,12 +45,14 @@
 
                             <div class="col-md-3 mt-3">
                                 <div class="form-group">
-                                    <label for="email">Category</label>
-                                    <select class="form-control @error('category') is-invalid @enderror" name="category">
+                                    <label for="category">Category</label>
+                                    <select id="category" class="form-control @error('category') is-invalid @enderror"
+                                            name="category">
+                                        <option value="" selected disabled="">Selct category</option>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" @if($product->category_id==$category->id) selected @endif>{{ $category->name }}</option>
-                                            @endforeach
-
+                                            <option value="{{ $category->id }}"
+                                                    @if($product->category_id == $category->id) selected @endif>{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                     @error('category')
                                     <div class="text-danger">{{$message}}</div>
@@ -60,8 +62,9 @@
 
                             <div class="col-md-3 mt-3">
                                 <div class="form-group">
-                                    <label for="password">Description</label>
-                                   <textarea class="form-control @error('description') is-invalid @enderror" name="description">{{ $product->description }}</textarea>
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control @error('description') is-invalid @enderror"
+                                              name="description">{{ $product->description }}</textarea>
                                     @error('description')
                                     <div class="text-danger">{{$message}}</div>
                                     @enderror
@@ -70,9 +73,10 @@
 
                             <div class="col-md-3 mt-3">
                                 <div class="form-group">
-                                    <label for="address">Price</label>
+                                    <label for="price">Price</label>
                                     <input type="number" id="price"
-                                           value="{{$product->price}}"  name="price" class="form-control @error('price') is-invalid @enderror">
+                                           value="{{$product->price}}" name="price"
+                                           class="form-control @error('price') is-invalid @enderror">
                                     @error('price')
                                     <div class="text-danger">{{$message}}</div>
                                     @enderror
@@ -84,13 +88,13 @@
                                     <label for="image">Image</label>
                                     <input type="file" accept="image/*" id="image"
                                            name="image" class="form-control @error('image') is-invalid @enderror">
-                                    <img src="{{asset('assets/images/product_images/'.$product->image)}}" alt="" class="small-img">
+                                    <img src="{{asset($product->image_path)}}" alt=""
+                                         class="small-img">
                                     @error('image')
                                     <div class="text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row mt-5">

@@ -53,7 +53,7 @@ class HeroController extends Controller
     public function update(Hero $hero, Request $request)
     {
         $request->validate([
-            'image' => $request->has('hero') && $request->hero != "" ? 'required|file' : '',
+            'image' => $request->has('image') && $request->image != "" ? 'required|file' : '',
         ]);
 
         if ($request->has('image') && $request->image != "") {

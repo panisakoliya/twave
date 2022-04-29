@@ -17,16 +17,16 @@
                     <i class="material-icons-two-tone">person</i>Users
                 </a>
             </li>
-            <li class="@if(Route::is('product.*')) active-page @endif">
-                <a href="{{route('product.index')}}"
-                   class="@if(Route::is('product.index')) active @endif">
-                    <i class="material-icons-two-tone">extension</i>Products
-                </a>
-            </li>
             <li class="@if(Route::is('category.*')) active-page @endif">
                 <a href="{{route('category.index')}}"
                    class="@if(Route::is('category.index')) active @endif">
                     <i class="material-icons-two-tone">segment</i>Categories
+                </a>
+            </li>
+            <li class="@if(Route::is('product.*')) active-page @endif">
+                <a href="{{route('product.index')}}"
+                   class="@if(Route::is('product.index')) active @endif">
+                    <i class="material-icons-two-tone">extension</i>Products
                 </a>
             </li>
             <li class="@if(Route::is('hero.*')) active-page @endif">
