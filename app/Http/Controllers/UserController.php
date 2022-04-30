@@ -115,4 +115,40 @@ class UserController extends Controller
             'message' => 'User deleted successfully'
         ]);
     }
+
+    /**
+     *
+     *
+     * API Methods
+     *
+     */
+
+    public function usersAPI()
+    {
+        $users = User::role('user')->get();
+
+        $data = array();
+
+        if (count($users) > 0) {
+            foreach ($users as $key => $user) {
+                $data[$key]['name'] = $user->name;
+                $data[$key]['email'] = $user->email;
+                $data[$key]['address'] = $user->address;
+                $data[$key]['image'] = $user->image_path;
+                $data[$key]['phone_number'] = $user->phone_number;
+            }
+
+            return response()->json([
+                'status' => true,
+                'data' => $data,
+                'message' => 'Users retrieve successfully'
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'data' => null,
+            'message' => 'No users found'
+        ]);
+    }
 }

@@ -86,4 +86,36 @@ class HeroController extends Controller
             'message' => 'Hero deleted successfully'
         ]);
     }
+
+    /**
+     *
+     * API Methods
+     *
+     */
+
+    public function herosAPI()
+    {
+        $heros = Hero::all();
+
+        $data = array();
+
+        if (count($heros) > 0) {
+            foreach ($heros as $key => $hero) {
+                $data[$key]['name'] = $hero->name;
+                $data[$key]['image'] = $hero->image_path;
+            }
+
+            return response()->json([
+                'status' => true,
+                'data' => $data,
+                'message' => 'Heros retrieve successfully'
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'data' => null,
+            'message' => 'No heros found'
+        ]);
+    }
 }

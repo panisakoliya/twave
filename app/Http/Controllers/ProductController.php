@@ -110,4 +110,41 @@ class ProductController extends Controller
             'message' => 'Product deleted successfully'
         ]);
     }
+
+
+
+    /**
+     *
+     * API Methods
+     *
+     */
+
+    public function productsAPI()
+    {
+        $products = Product::all();
+
+        $data = array();
+
+        if (count($products) > 0) {
+            foreach ($products as $key => $product) {
+                $data[$key]['category'] = $product->category->name ?? '';
+                $data[$key]['description'] = $product->description;
+                $data[$key]['image'] = $product->image_path;
+                $data[$key]['name'] = $product->name;
+                $data[$key]['price'] = $product->price;
+            }
+
+            return response()->json([
+                'status' => true,
+                'data' => $data,
+                'message' => 'Products retrieve successfully'
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'data' => null,
+            'message' => 'No products found'
+        ]);
+    }
 }

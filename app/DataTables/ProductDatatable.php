@@ -21,7 +21,9 @@ class ProductDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('image', function ($query) {
+            ->addColumn('category', function ($query) {
+                return $query->category->name ?? '';
+            })->addColumn('image', function ($query) {
                 return "<img class='small-img' src='" . $query->image_path . "' alt=''>";
             })->addcolumn('action', function ($query) {
                 return $query->action_buttons;
@@ -96,6 +98,7 @@ class ProductDatatable extends DataTable
         return [
             'id',
             'name',
+            'category',
             'price',
             'image',
             'action',

@@ -38,6 +38,11 @@ class Product extends Model
     {
         return asset('assets/images/product_images') . '/' . $this->image;
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'id');
+    }
 }
 
 

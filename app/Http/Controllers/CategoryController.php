@@ -89,4 +89,36 @@ class CategoryController extends Controller
             'message' => 'Category deleted successfully'
         ]);
     }
+
+    /**
+     *
+     * API Methods
+     *
+     */
+
+    public function categoriesAPI()
+    {
+        $categories = Category::all();
+
+        $data = array();
+
+        if (count($categories) > 0) {
+            foreach ($categories as $key => $category) {
+                $data[$key]['name'] = $category->name;
+                $data[$key]['image'] = $category->image_path;
+            }
+
+            return response()->json([
+                'status' => true,
+                'data' => $data,
+                'message' => 'Categories retrieve successfully'
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'data' => null,
+            'message' => 'No categories found'
+        ]);
+    }
 }
