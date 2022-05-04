@@ -22,6 +22,14 @@ class RegisterAPIController extends Controller
             return APIResponseHelper::apiErrorResponse("Email field is required");
         }
 
+        if (!$request->has('address') || $request->address == "") {
+            return APIResponseHelper::apiErrorResponse("Address field is required");
+        }
+
+        if (!$request->has('phone_number') || $request->phone_number == "") {
+            return APIResponseHelper::apiErrorResponse("Phone Number field is required");
+        }
+
         $checkEmail = User::where('email', $request->email)->first();
 
         if ($checkEmail) {
