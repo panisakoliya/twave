@@ -44,6 +44,8 @@ class RegisterAPIController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->address = $request->address;
+        $user->phone_number = $request->phone_number;
         $user->api_token = Str::random(60);
         $user->save();
 
