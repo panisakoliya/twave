@@ -14,9 +14,6 @@ class RegisterAPIController extends Controller
 {
     public function register(Request $request)
     {
-        if (!$request->has('name') || $request->name == "") {
-            return APIResponseHelper::apiErrorResponse("Name field is required");
-        }
 
         if (!$request->has('email') || $request->email == "") {
             return APIResponseHelper::apiErrorResponse("Email field is required");
@@ -41,7 +38,6 @@ class RegisterAPIController extends Controller
         }
 
         $user = new User;
-        $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->address = $request->address;
