@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\LoginAPIController;
+use App\Http\Controllers\API\RegisterAPIController;
+use App\Http\Controllers\API\UserAPIController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\ProductController;
@@ -19,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1'], function () {
+    Route::post('login', [LoginAPIController::class, 'login']);
+    Route::post('register', [RegisterAPIController::class, 'register']);
+    Route::post('forgot-password', [UserAPIController::class, 'forgotPassword']);
+
     Route::get('users', [UserController::class, 'usersAPI']);
     Route::get('categories', [CategoryController::class, 'categoriesAPI']);
     Route::get('products', [ProductController::class, 'productsAPI']);
